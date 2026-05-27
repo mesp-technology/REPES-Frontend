@@ -1,0 +1,329 @@
+.process {
+  background: linear-gradient(180deg, var(--color-surface-base) 0%, var(--color-surface-alt) 50%, var(--color-surface-base) 100%);
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-primary-contemporary);
+  border-top: 1px solid rgba(11, 12, 38, 0.03);
+  border-bottom: 1px solid rgba(11, 12, 38, 0.03);
+}
+
+/* Web/Grid pattern overlay */
+.process::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(11, 12, 38, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(11, 12, 38, 0.015) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Ambient glow accent in background */
+.process::after {
+  content: "";
+  position: absolute;
+  bottom: -10%;
+  left: -10%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle, rgba(var(--color-primary-contemporary-rgb), 0.1) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.processHeader {
+  text-align: center;
+  margin-bottom: var(--space-7);
+  position: relative;
+  z-index: 2;
+}
+
+.processTag {
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid var(--color-secondary-contemporary);
+  width: 0;
+  padding: 0;
+  font-family: var(--font-mono-contemporary);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-secondary-contemporary);
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-bottom: none;
+  border-radius: 0;
+  margin-bottom: var(--space-5);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  animation: 
+    typing 8s infinite,
+    blink 0.75s step-end infinite;
+}
+
+.dot {
+  display: none;
+}
+
+@keyframes typing {
+  0% {
+    width: 0;
+    animation-timing-function: steps(17, end);
+  }
+  15% {
+    width: 21ch;
+  }
+  95% {
+    width: 21ch;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes blink {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--color-secondary-contemporary); }
+}
+
+.processTitle {
+  font-family: var(--font-display-contemporary);
+  font-size: clamp(38px, 5.5vw, 52px);
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+  letter-spacing: -1px;
+  line-height: 1.15;
+}
+
+.processSubtitle {
+  font-family: var(--font-primary-contemporary);
+  font-size: var(--font-size-xl);
+  color: var(--color-text-muted);
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* --- Bento Grid --- */
+.processGrid {
+  display: grid;
+  grid-template-columns: 1fr; /* 1 Column full-width */
+  gap: 28px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Sibling spotlight dimming grid-wide rule */
+.processGrid:hover .stepCard {
+  opacity: 0.65;
+  transform: scale(0.985);
+}
+
+/* --- Step Cards --- */
+.stepCard {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.18) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: var(--radius-sm);
+  padding: 32px 48px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.4), var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  min-height: auto;
+  transition: transform var(--motion-smooth) cubic-bezier(0.16, 1, 0.3, 1),
+    border-color var(--motion-instant) ease,
+    box-shadow var(--motion-smooth) cubic-bezier(0.16, 1, 0.3, 1),
+    background var(--motion-instant) ease,
+    opacity var(--motion-smooth) cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Active Hover Card Pop Out */
+.processGrid:hover .stepCard:hover {
+  opacity: 1;
+  transform: translateY(-4px) scale(1.01);
+  border-color: rgba(var(--color-primary-contemporary-rgb), 0.5);
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.5),
+    0 20px 40px rgba(var(--color-primary-contemporary-rgb), 0.12),
+    0 1px 3px rgba(0, 0, 0, 0.02);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.3) 100%);
+  z-index: 10;
+}
+
+/* Backdrop Track Number */
+.cardBackdropNum {
+  position: absolute;
+  bottom: -20px;
+  right: 15px;
+  font-family: var(--font-mono-contemporary);
+  font-size: 140px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--color-secondary-contemporary);
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 1;
+  user-select: none;
+  transition: transform var(--motion-smooth) cubic-bezier(0.16, 1, 0.3, 1),
+    opacity var(--motion-smooth) cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stepCard:hover .cardBackdropNum {
+  opacity: 0.08;
+  transform: translateY(-5px) scale(1.03);
+}
+
+.cardContent {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: row; /* Horizontal layout */
+  align-items: center;
+  gap: 48px;
+  width: 100%;
+}
+
+/* Card Header (Left side of horizontal list) */
+.cardHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 0;
+  flex-shrink: 0;
+  width: 140px; /* Aligns content cleanly */
+}
+
+.iconContainer {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(var(--color-primary-contemporary-rgb), 0.1);
+  border: 1px solid rgba(var(--color-primary-contemporary-rgb), 0.25);
+  border-radius: var(--radius-sm);
+  color: var(--color-secondary-contemporary);
+  transition: all var(--motion-smooth) cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stepCard:hover .iconContainer {
+  background: var(--color-primary-contemporary);
+  color: var(--color-accent-on-accent);
+  border-color: var(--color-primary-contemporary);
+  box-shadow: var(--shadow-glow-accent);
+  transform: translateY(-2px); /* Lift icon container */
+}
+
+.icon {
+  transition: transform var(--motion-smooth) cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stepCard:hover .icon {
+  transform: translateY(-3px) scale(1.05); /* Dynamic translating "move" icon animation */
+}
+
+.stepLabel {
+  font-family: var(--font-mono-contemporary);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-secondary-contemporary);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Card Body (Right side of horizontal list) */
+.cardBody {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
+.stepTitle {
+  font-family: var(--font-display-contemporary);
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-3);
+  line-height: 1.35;
+  letter-spacing: -0.3px;
+}
+
+.stepDesc {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* Card Glow Accent */
+.cardGlow {
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(var(--color-primary-contemporary-rgb), 0.12) 0%, transparent 70%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--motion-smooth) cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+.stepCard:hover .cardGlow {
+  opacity: 1;
+}
+
+/* --- Keyboard Outline states --- */
+.stepCard:focus-visible {
+  outline: 2px solid var(--color-secondary-contemporary);
+  outline-offset: 4px;
+}
+
+/* --- Responsive Breakpoints --- */
+@media (max-width: 1024px) {
+  .processGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .stepCard {
+    padding: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cardContent {
+    flex-direction: column; /* Collapse to vertical on tablet/mobile */
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .cardHeader {
+    width: auto;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .processGrid {
+    gap: 16px;
+  }
+
+  .stepCard {
+    padding: 24px 20px;
+  }
+
+  .processTitle {
+    font-size: 28px;
+  }
+}

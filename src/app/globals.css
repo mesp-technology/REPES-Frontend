@@ -1,0 +1,179 @@
+@import "tailwindcss";
+
+
+:root {
+  /* --- Colors (Light Mode) --- */
+  --color-surface-base: #f4f7f5;
+  --color-surface-alt: #f9f9f9;
+  --color-text-primary: #0b0c26;
+  --color-text-secondary: #0b0c26;
+  --color-text-tertiary: #FDE03A;
+  --color-text-tertiary-dark: #C9B100;
+  --color-accent-on-accent: #0b0c26;
+  --color-text-inverse: #ffffff;
+  --color-text-muted: rgba(11, 12, 38, 0.55);
+  --color-surface-raised: #ffffff;
+  --color-surface-strong: #f9f9f9;
+  --color-surface-dark: #0b0c26;
+  --color-border: rgba(11, 12, 38, 0.08);
+  --color-border-strong: rgba(11, 12, 38, 0.12);
+
+  /* --- Typography --- */
+  --font-primary: var(--font-be-vietnam-pro), sans-serif;
+  --font-size-xs: 10px;
+  --font-size-sm: 12px;
+  --font-size-md: 13px;
+  --font-size-lg: 14px;
+  --font-size-xl: 16px;
+  --font-size-2xl: 20px;
+  --font-size-3xl: 22px;
+  --font-size-4xl: 24px;
+  --font-weight-base: 400;
+  --font-line-height-base: normal;
+
+  /* --- Spacing --- */
+  --space-1: 5px;
+  --space-2: 8px;
+  --space-3: 10px;
+  --space-4: 12px;
+  --space-5: 15px;
+  --space-6: 20px;
+  --space-7: 50px;
+  --space-8: 100px;
+
+  /* --- Radius --- */
+  --radius-xs: 6.05px;
+  --radius-sm: 10px;
+  --radius-md: 20px;
+  --radius-lg: 30px;
+  --radius-xl: 40px;
+  --radius-2xl: 100px;
+
+  /* --- Motion --- */
+  --motion-instant: 200ms;
+  --motion-smooth: 400ms;
+  --motion-slow: 600ms;
+
+  /* --- Shadows --- */
+  --shadow-card: 0 2px 16px rgba(11, 12, 38, 0.06);
+  --shadow-card-hover: 0 8px 30px rgba(11, 12, 38, 0.1);
+  --shadow-elevated: 0 12px 40px rgba(11, 12, 38, 0.12);
+  --shadow-glow-accent: 0 4px 24px rgba(253, 224, 58, 0.4);
+
+  /* --- Contemporary Theme Tokens --- */
+  --color-primary-contemporary: #FDE03A;
+  --color-secondary-contemporary: #C9B100;
+  --color-success-contemporary: #16A34A;
+  --color-warning-contemporary: #D97706;
+  --color-danger-contemporary: #DC2626;
+
+  /* --- RGB Mappings for Alpha overlays --- */
+  --color-text-primary-rgb: 11, 12, 38;
+  --color-primary-contemporary-rgb: 253, 224, 58;
+  --color-secondary-contemporary-rgb: 201, 177, 0;
+
+  --font-display-contemporary: var(--font-jost), sans-serif;
+  --font-primary-contemporary: var(--font-jost), sans-serif;
+  --font-mono-contemporary: var(--font-overpass-mono), monospace;
+}
+
+/* ========================================
+   BASE STYLES
+   ======================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-base);
+  line-height: var(--font-line-height-base);
+  color: var(--color-text-primary);
+  background-color: var(--color-surface-base);
+}
+
+/* --- Headings --- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text-primary);
+}
+
+/* --- Links --- */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--motion-instant) ease;
+}
+
+a:hover {
+  color: var(--color-text-tertiary);
+}
+
+/* --- Focus Visible (WCAG 2.2 AA) --- */
+:focus-visible {
+  outline: 2px solid var(--color-text-tertiary);
+  outline-offset: 3px;
+  border-radius: var(--radius-xs);
+}
+
+/* --- Buttons Base --- */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-size: inherit;
+}
+
+/* --- Images --- */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* --- Section utility --- */
+.section-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+/* --- Section padding --- */
+.section-padding {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
+}
+
+/* --- Screen reader only --- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

@@ -1,0 +1,393 @@
+.services {
+  background: transparent;
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-primary-contemporary);
+}
+
+/* Background gradient glows for the whole section */
+.services::before {
+  content: "";
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(circle, rgba(var(--color-primary-contemporary-rgb), 0.15) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.services::after {
+  content: "";
+  position: absolute;
+  bottom: -10%;
+  right: -10%;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(circle, rgba(var(--color-secondary-contemporary-rgb), 0.12) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.servicesHeader {
+  text-align: center;
+  margin-bottom: var(--space-7);
+  position: relative;
+  z-index: 2;
+}
+
+.sectionTag {
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid var(--color-secondary-contemporary);
+  width: 0;
+  padding: 0;
+  font-family: var(--font-mono-contemporary);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-secondary-contemporary);
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-bottom: none;
+  border-radius: 0;
+  margin-bottom: var(--space-5);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  animation: 
+    typing 8s infinite,
+    blink 0.75s step-end infinite;
+}
+
+.dot {
+  display: none;
+}
+
+@keyframes typing {
+  0% {
+    width: 0;
+    animation-timing-function: steps(12, end);
+  }
+  15% {
+    width: 15ch;
+  }
+  95% {
+    width: 15ch;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes blink {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--color-secondary-contemporary); }
+}
+
+.sectionTitle {
+  font-family: var(--font-display-contemporary);
+  font-size: clamp(38px, 5.5vw, 52px);
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+  letter-spacing: -1px;
+  line-height: 1.15;
+}
+
+.sectionSubtitle {
+  font-family: var(--font-primary-contemporary);
+  font-size: var(--font-size-xl);
+  color: var(--color-text-muted);
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* --- Bento Grid --- */
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  position: relative;
+  z-index: 2;
+}
+
+/* --- Bento Cards --- */
+.serviceCard {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.15) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: var(--radius-md);
+  padding: 36px var(--space-6);
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--motion-smooth) cubic-bezier(0.16, 1, 0.3, 1),
+    border-color var(--motion-instant) ease,
+    box-shadow var(--motion-smooth) cubic-bezier(0.16, 1, 0.3, 1),
+    background var(--motion-instant) ease,
+    opacity var(--motion-smooth) cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.4), var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 380px;
+}
+
+.cardBg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform var(--motion-smooth) cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+.serviceCard:hover .cardBg {
+  transform: scale(1.06);
+}
+
+.cardOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(11, 12, 38, 0.25) 0%, rgba(11, 12, 38, 0.75) 100%);
+  transition: background var(--motion-smooth) ease;
+  z-index: 2;
+}
+
+.serviceCard:hover .cardOverlay {
+  background: linear-gradient(180deg, rgba(11, 12, 38, 0.15) 0%, rgba(11, 12, 38, 0.85) 100%);
+}
+
+.cardContent {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.cardLarge {
+  grid-column: span 2;
+}
+
+.cardSmall {
+  grid-column: span 1;
+}
+
+/* When the grid is hovered, dim and scale down all cards slightly */
+.servicesGrid:hover .serviceCard {
+  opacity: 0.6;
+  transform: scale(0.97);
+}
+
+/* Overwrite for the specifically hovered card to highlight it */
+.servicesGrid:hover .serviceCard:hover {
+  opacity: 1;
+  transform: translateY(-10px) scale(1.04);
+  border-color: rgba(var(--color-primary-contemporary-rgb), 0.5);
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.5),
+    0 25px 50px rgba(var(--color-primary-contemporary-rgb), 0.12),
+    0 1px 3px rgba(0, 0, 0, 0.02);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.3) 100%);
+  z-index: 10;
+}
+
+.serviceCard:hover .cardGlow {
+  opacity: 1;
+}
+
+.serviceCard:hover .serviceIcon {
+  color: var(--color-primary-contemporary);
+  filter: drop-shadow(0 2px 8px rgba(var(--color-primary-contemporary-rgb), 0.8));
+}
+
+.serviceCard:hover .serviceArrow {
+  color: var(--color-primary-contemporary);
+}
+
+.serviceCard:hover .arrowIcon {
+  transform: translateX(6px);
+  background-color: var(--color-primary-contemporary);
+  color: var(--color-accent-on-accent);
+}
+
+/* Card Header */
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.cardMeta {
+  display: flex;
+  align-items: center;
+}
+
+.cardId {
+  font-family: var(--font-mono-contemporary);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-primary-contemporary);
+}
+
+.cardLabel {
+  font-family: var(--font-mono-contemporary);
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 1.5px;
+  margin-left: 12px;
+}
+
+.cardTag {
+  font-family: var(--font-mono-contemporary);
+  font-size: 9px;
+  font-weight: 700;
+  color: #ffffff;
+  padding: 4px 8px;
+  background: rgba(var(--color-secondary-contemporary-rgb), 0.35);
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(4px);
+}
+
+/* Card Body */
+.cardBody {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 28px;
+}
+
+.serviceIconContainer {
+  margin-bottom: 20px;
+}
+
+.serviceIcon {
+  width: auto;
+  height: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  color: rgba(255, 255, 255, 0.95);
+  transition: color var(--motion-smooth) ease,
+    filter var(--motion-smooth) ease;
+}
+
+.serviceTitle {
+  font-family: var(--font-display-contemporary);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-text-inverse);
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+.serviceDesc {
+  font-family: var(--font-primary-contemporary);
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.6;
+}
+
+/* Card Footer */
+.cardFooter {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.serviceArrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-primary-contemporary);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-inverse);
+  transition: color var(--motion-instant) ease;
+}
+
+.arrowIcon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-text-inverse);
+  transition: transform var(--motion-smooth) cubic-bezier(0.16, 1, 0.3, 1),
+    background-color var(--motion-smooth) ease,
+    color var(--motion-smooth) ease;
+}
+
+/* Card Glow Effect */
+.cardGlow {
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(var(--color-primary-contemporary-rgb), 0.15) 0%, transparent 70%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--motion-smooth) cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+/* Keyboard states */
+.serviceArrow:focus-visible {
+  outline: 2px solid var(--color-primary-contemporary);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* --- Responsive Breakpoints --- */
+@media (max-width: 1024px) {
+  .servicesGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .cardLarge {
+    grid-column: span 2;
+  }
+
+  .cardSmall {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .servicesGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .cardLarge,
+  .cardSmall {
+    grid-column: span 1;
+    min-height: auto;
+  }
+
+  .serviceCard {
+    padding: 28px 20px;
+  }
+
+  .sectionTitle {
+    font-size: 28px;
+  }
+}
