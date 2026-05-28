@@ -192,21 +192,6 @@ export default function HeroSection() {
                     />
                     <div className={styles.slideOverlay} />
 
-                    <button
-                      className={`${styles.navBtn} ${styles.navBtnLeft}`}
-                      onClick={prev}
-                      aria-label="Previous slide"
-                    >
-                      <ChevronLeft size={20} />
-                    </button>
-
-                    <button
-                      className={`${styles.navBtn} ${styles.navBtnRight}`}
-                      onClick={next}
-                      aria-label="Next slide"
-                    >
-                      <ChevronRight size={20} />
-                    </button>
 
                     <div className={styles.carouselDots}>
                       {HERO_SLIDES.map((subSlide, subIndex) => (

@@ -173,7 +173,7 @@ export default function GallerySection() {
         </div>
 
         <div className={styles.albumsGrid}>
-          {ALBUMS.map((album) => (
+          {ALBUMS.map((album, index) => (
             <div className={styles.cardWrapper} key={album.title}>
               <article
                 className={styles.albumCard}
@@ -193,7 +193,7 @@ export default function GallerySection() {
                     randomRotation={true}
                     sensitivity={180}
                     autoplay={true}
-                    autoplayDelay={4000 + Math.random() * 1000} // Stagger autoplay
+                    autoplayDelay={4000 + index * 300} // Stagger autoplay deterministically
                     sendToBackOnClick={false}
                     // @ts-expect-error: Stack component is untyped JSX and cards infers as never[]
                     cards={album.images.map((img, i) => (

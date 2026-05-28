@@ -215,10 +215,6 @@ export default function LoginPage() {
       )}
 
 
-
-      {/* ==============================================================
-          LEFT PANEL: GORGEOUS DYNAMIC REAL-ESTATE MEDIA SHOWCASE 
-          ============================================================== */}
       <section className={styles.leftPanel} aria-label="REPES Media Editing Showcase">
         {/* ShapeGrid background layer */}
         <div className={styles.showcaseBackground}>
@@ -247,23 +243,22 @@ export default function LoginPage() {
             if (index !== currentSlide) return null;
             return (
               <div key={slide.id} style={{ animation: "fadeIn 0.6s ease forwards" }}>
-                {/* Floating pill highlight */}
+
                 <div className={styles.badge}>
 
                   <Typewriter text={slide.subtitle} />
                 </div>
 
-                {/* Service title */}
+
                 <h1 className={styles.showcaseTitle}>
                   {slide.title}
                 </h1>
 
-                {/* Brief description */}
                 <p className={styles.showcaseDesc}>
                   {slide.description}
                 </p>
 
-                {/* Mini Stat display */}
+
                 <div className={styles.metricsContainer}>
                   <div className={styles.metricItem}>
                     <span className={styles.metricLabel}>Ecosystem Metric</span>
