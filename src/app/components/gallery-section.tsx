@@ -195,6 +195,7 @@ export default function GallerySection() {
                     autoplay={true}
                     autoplayDelay={4000 + Math.random() * 1000} // Stagger autoplay
                     sendToBackOnClick={false}
+                    // @ts-expect-error: Stack component is untyped JSX and cards infers as never[]
                     cards={album.images.map((img, i) => (
                       <img key={i} src={img} alt={`${album.title} preview`} className="w-full h-full object-cover" />
                     ))}
