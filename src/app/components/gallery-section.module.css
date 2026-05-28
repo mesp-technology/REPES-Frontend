@@ -103,61 +103,11 @@
   z-index: 2;
 }
 
-/* 3D Stack Wrapper */
+/* 3D Stack Wrapper removed, keeping basic wrapper */
 .cardWrapper {
   position: relative;
-  perspective: 1200px;
-  transform-style: preserve-3d;
   transition: transform var(--motion-smooth) cubic-bezier(0.16, 1, 0.3, 1),
               opacity var(--motion-smooth) cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Overlapping Book Pages (3D Card Stack deck projected behind the front card) */
-.cardWrapper::before,
-.cardWrapper::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: var(--radius-sm);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  box-shadow: 0 10px 30px rgba(11, 12, 38, 0.06);
-  pointer-events: none;
-  transition: transform var(--motion-smooth) cubic-bezier(0.16, 1, 0.3, 1),
-              opacity var(--motion-smooth) ease,
-              border-color var(--motion-instant) ease;
-  z-index: 1;
-  opacity: 0.35; /* Peaking structural hint when resting */
-}
-
-/* Layer 2: Middle stacked page (peaking flatly behind when resting) */
-.cardWrapper::before {
-  transform: rotateY(0deg) rotateX(0deg) translateZ(-15px) translateX(8px) translateY(4px) rotate(0.5deg);
-}
-
-/* Layer 3: Backmost stacked page (peaking flatly further behind when resting) */
-.cardWrapper::after {
-  transform: rotateY(0deg) rotateX(0deg) translateZ(-30px) translateX(16px) translateY(8px) rotate(1deg);
-  opacity: 0.2;
-}
-
-/* Spring stack action on hover */
-.cardWrapper:hover::before {
-  opacity: 0.85;
-  transform: rotateY(-12deg) rotateX(6deg) translateZ(-35px) translateX(20px) translateY(10px) rotate(2.5deg);
-  border-color: rgba(var(--color-primary-contemporary-rgb), 0.35);
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.cardWrapper:hover::after {
-  opacity: 0.55;
-  transform: rotateY(-12deg) rotateX(6deg) translateZ(-70px) translateX(40px) translateY(20px) rotate(5deg);
-  border-color: rgba(var(--color-primary-contemporary-rgb), 0.2);
-  background: rgba(255, 255, 255, 0.04);
 }
 
 /* Sibling spotlight dimming grid-wide rule */
@@ -188,18 +138,14 @@
   justify-content: space-between;
   min-height: 300px;
   cursor: pointer;
-  z-index: 2; /* Stands in front of peaking page layers */
-  transform-style: preserve-3d;
-  transform: rotateY(0deg) rotateX(0deg) translateZ(0); /* Clean centered rest angle */
-  transition: transform var(--motion-smooth) cubic-bezier(0.16, 1, 0.3, 1),
-    border-color var(--motion-instant) ease,
+  z-index: 2;
+  transition: border-color var(--motion-instant) ease,
     box-shadow var(--motion-smooth) cubic-bezier(0.16, 1, 0.3, 1),
     background var(--motion-instant) ease;
 }
 
-/* Active Hover Card Pop Out */
+/* Active Hover Card Glow */
 .cardWrapper:hover .albumCard {
-  transform: rotateY(-12deg) rotateX(6deg) translateZ(10px) translateY(-6px);
   border-color: rgba(var(--color-primary-contemporary-rgb), 0.5);
   box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.5),
     0 20px 40px rgba(var(--color-primary-contemporary-rgb), 0.15),
@@ -212,12 +158,7 @@
   inset: 0;
   background-size: cover;
   background-position: center;
-  transition: transform var(--motion-smooth) cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 1;
-}
-
-.albumCard:hover .cardBg {
-  transform: scale(1.06);
 }
 
 .cardOverlay {

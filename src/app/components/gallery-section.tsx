@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import styles from "./gallery-section.module.css";
+import Stack from "@/components/Stack";
 
 interface Album {
   id: string;
@@ -187,12 +188,19 @@ export default function GallerySection() {
                 }}
                 aria-label={`Open ${album.title} gallery containing ${album.count} photos`}
               >
-                <div
-                  className={styles.cardBg}
-                  style={{ backgroundImage: `url(${album.cover})` }}
-                  aria-hidden="true"
-                />
-                <div className={styles.cardOverlay} aria-hidden="true" />
+                <div className={styles.cardBg} aria-hidden="true">
+                  <Stack
+                    randomRotation={true}
+                    sensitivity={180}
+                    autoplay={true}
+                    autoplayDelay={4000 + Math.random() * 1000} // Stagger autoplay
+                    sendToBackOnClick={false}
+                    cards={album.images.map((img, i) => (
+                      <img key={i} src={img} alt={`${album.title} preview`} className="w-full h-full object-cover" />
+                    ))}
+                  />
+                </div>
+                <div className={styles.cardOverlay} style={{ pointerEvents: 'none' }} aria-hidden="true" />
   
                 <div className={styles.cardContent}>
                   <div className={styles.cardBody}>

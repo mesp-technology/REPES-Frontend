@@ -45,7 +45,7 @@
   margin-bottom: var(--space-5);
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  animation: 
+  animation:
     typing 8s infinite,
     blink 0.75s step-end infinite;
 }
@@ -59,20 +59,30 @@
     width: 0;
     animation-timing-function: steps(11, end);
   }
+
   15% {
     width: 14ch;
   }
+
   95% {
     width: 14ch;
   }
+
   100% {
     width: 0;
   }
 }
 
 @keyframes blink {
-  from, to { border-color: transparent; }
-  50% { border-color: var(--color-secondary-contemporary); }
+
+  from,
+  to {
+    border-color: transparent;
+  }
+
+  50% {
+    border-color: var(--color-secondary-contemporary);
+  }
 }
 
 .projectsTitle {

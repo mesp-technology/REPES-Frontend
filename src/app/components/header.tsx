@@ -45,7 +45,7 @@ export default function Header() {
               {link.label}
             </a>
           ))}
-          <a href="#cta" className={styles.ctaButton}>
+          <a href="/login" className={styles.ctaButton}>
             Get Started
           </a>
         </nav>
@@ -79,7 +79,7 @@ export default function Header() {
           </a>
         ))}
         <a
-          href="#cta"
+          href="/login"
           className={styles.ctaButton}
           onClick={() => setMobileOpen(false)}
         >
