@@ -10,7 +10,7 @@ export default function ScrollToTop() {
   const isMobileRef = useRef(false);
 
   useEffect(() => {
-    // Detect mobile viewport once mounted and on resize
+
     const checkMobile = () => {
       isMobileRef.current = window.innerWidth <= 768;
     };
@@ -22,6 +22,7 @@ export default function ScrollToTop() {
     const handleScroll = () => {
       if (!ticked) {
         window.requestAnimationFrame(() => {
+
           const scrollY = window.scrollY;
           const docHeight = document.documentElement.scrollHeight;
           const winHeight = window.innerHeight;
@@ -50,8 +51,28 @@ export default function ScrollToTop() {
     handleScroll();
 
     return () => {
+
       window.removeEventListener("resize", checkMobile);
       window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handlePageShow = (e: PageTransitionEvent) => {
+      console.log("pageshow", e.persisted);
+    };
+
+    window.addEventListener("pageshow", handlePageShow);
+
+    return () => {
+      window.removeEventListener("pageshow", handlePageShow);
+    };
+  }, []);
+  useEffect(() => {
+    console.log("mounted");
+
+    return () => {
+      console.log("unmounted");
     };
   }, []);
 

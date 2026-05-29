@@ -54,16 +54,20 @@ export default function HeroSection() {
 
   /* Auto-rotate slides every 5s */
   useEffect(() => {
+
     const timer = setInterval(next, 5000);
     return () => clearInterval(timer);
   }, [next]);
+
 
   /* Cycle tags every 3.5s */
   useEffect(() => {
     const timer = setInterval(() => {
       setTagIndex((prev) => (prev + 1) % TAG_LINES.length);
     }, 3500);
+
     return () => clearInterval(timer);
+
   }, []);
 
   /* Gesture Handlers */

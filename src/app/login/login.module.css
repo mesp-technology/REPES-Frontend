@@ -85,7 +85,6 @@
    }
  }
 
- /* --- Tactile Back to Home Action Button --- */
  .backButton {
    display: inline-flex;
    align-items: center;
@@ -800,4 +799,65 @@
  .disclaimerTitle {
    font-weight: 600;
    color: rgba(255, 255, 255, 0.5);
+ }
+
+ /* --- Premium Staggered entrance animations --- */
+ @keyframes fadeUp {
+   from {
+     opacity: 0;
+     transform: translateY(24px);
+   }
+
+   to {
+     opacity: 1;
+     transform: translateY(0);
+   }
+ }
+
+ @keyframes fadeIn {
+   from {
+     opacity: 0;
+   }
+
+   to {
+     opacity: 1;
+   }
+ }
+
+ .fadeUpElement {
+   opacity: 0;
+   animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+ }
+
+ /* Staggered delay helper classes */
+ .delay1 {
+   animation-delay: 100ms;
+ }
+
+ .delay2 {
+   animation-delay: 200ms;
+ }
+
+ .delay3 {
+   animation-delay: 300ms;
+ }
+
+ .delay4 {
+   animation-delay: 400ms;
+ }
+
+ .delay5 {
+   animation-delay: 500ms;
+ }
+
+ .delay6 {
+   animation-delay: 600ms;
+ }
+
+ .delay7 {
+   animation-delay: 700ms;
+ }
+
+ .delay8 {
+   animation-delay: 800ms;
  }

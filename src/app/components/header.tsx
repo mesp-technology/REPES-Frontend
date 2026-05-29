@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import styles from "./header.module.css";
+import Link from "next/link";
 
 const NAV_LINKS = [
   { label: "Services", href: "#services" },
@@ -57,9 +58,9 @@ export default function Header() {
               {link.label}
             </a>
           ))}
-          <a href="/login" className={styles.ctaButton}>
+          <Link href="/login" className={styles.ctaButton}>
             Get Started
-          </a>
+          </Link>
         </nav>
 
         <button
