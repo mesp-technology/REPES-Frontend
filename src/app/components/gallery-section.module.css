@@ -45,7 +45,7 @@
   margin-bottom: var(--space-5);
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  animation: 
+  animation:
     typing 8s infinite,
     blink 0.75s step-end infinite;
 }
@@ -59,20 +59,30 @@
     width: 0;
     animation-timing-function: steps(12, end);
   }
+
   15% {
     width: 15ch;
   }
+
   95% {
     width: 15ch;
   }
+
   100% {
     width: 0;
   }
 }
 
 @keyframes blink {
-  from, to { border-color: transparent; }
-  50% { border-color: var(--color-secondary-contemporary); }
+
+  from,
+  to {
+    border-color: transparent;
+  }
+
+  50% {
+    border-color: var(--color-secondary-contemporary);
+  }
 }
 
 .galleryTitle {
@@ -94,131 +104,123 @@
   line-height: 1.6;
 }
 
-/* --- Albums Bento Grid --- */
+/* --- Albums Grid --- */
 .albumsGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 36px; /* increased gap slightly to provide visual margins for 3D page peaking layers */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
   position: relative;
   z-index: 2;
 }
 
-/* 3D Stack Wrapper removed, keeping basic wrapper */
-.cardWrapper {
-  position: relative;
-  transition: transform var(--motion-smooth) cubic-bezier(0.16, 1, 0.3, 1),
-              opacity var(--motion-smooth) cubic-bezier(0.16, 1, 0.3, 1);
+/* Sibling spotlight dimming */
+.albumsGrid:hover .albumCard {
+  opacity: 0.6;
+  transform: scale(0.97);
 }
 
-/* Sibling spotlight dimming grid-wide rule */
-.albumsGrid:hover .cardWrapper {
-  opacity: 0.5;
-  transform: scale(0.96);
-}
-
-.albumsGrid:hover .cardWrapper:hover {
+.albumsGrid:hover .albumCard:hover {
   opacity: 1;
-  transform: scale(1.02);
+  transform: translateY(-8px) scale(1.02);
   z-index: 10;
 }
 
-/* --- Album Cards (Front Panel) --- */
+/* --- Album Cards --- */
 .albumCard {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.15) 100%);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: var(--radius-sm);
-  padding: 32px 24px;
   position: relative;
+  border-radius: var(--radius-sm);
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.4), var(--shadow-card);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 300px;
+  min-height: 340px;
   cursor: pointer;
-  z-index: 2;
-  transition: border-color var(--motion-instant) ease,
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: var(--shadow-card);
+  transition: transform var(--motion-smooth) cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow var(--motion-smooth) cubic-bezier(0.16, 1, 0.3, 1),
-    background var(--motion-instant) ease;
+    border-color var(--motion-instant) ease,
+    opacity var(--motion-smooth) cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Active Hover Card Glow */
-.cardWrapper:hover .albumCard {
-  border-color: rgba(var(--color-primary-contemporary-rgb), 0.5);
-  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.5),
-    0 20px 40px rgba(var(--color-primary-contemporary-rgb), 0.15),
-    0 1px 3px rgba(0, 0, 0, 0.02);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.3) 100%);
+.albumCard:hover {
+  border-color: rgba(var(--color-primary-contemporary-rgb), 0.4);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25),
+    0 0 30px rgba(var(--color-primary-contemporary-rgb), 0.08);
 }
 
-.cardBg {
+/* Background cover image */
+.cardImage {
   position: absolute;
   inset: 0;
   background-size: cover;
   background-position: center;
+  transition: transform var(--motion-slow) cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 1;
 }
 
+.albumCard:hover .cardImage {
+  transform: scale(1.06);
+}
+
+/* Gradient overlay */
 .cardOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(11, 12, 38, 0.4) 0%, rgba(11, 12, 38, 0.85) 100%);
-  transition: background var(--motion-smooth) ease;
+  background: linear-gradient(180deg, rgba(11, 12, 38, 0.12) 0%, rgba(11, 12, 38, 0.82) 100%);
   z-index: 2;
+  transition: background var(--motion-smooth) ease;
 }
 
 .albumCard:hover .cardOverlay {
-  background: linear-gradient(180deg, rgba(11, 12, 38, 0.25) 0%, rgba(11, 12, 38, 0.92) 100%);
+  background: linear-gradient(180deg, rgba(11, 12, 38, 0.05) 0%, rgba(11, 12, 38, 0.9) 100%);
 }
 
+/* Content positioned at bottom */
 .cardContent {
-  position: relative;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 28px;
   z-index: 3;
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  flex-grow: 1;
+  gap: 6px;
 }
 
-
-
-/* Card Body */
-.cardBody {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  margin-bottom: 8px;
+.photoCount {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono-contemporary);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-primary-contemporary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .albumTitle {
   font-family: var(--font-display-contemporary);
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 700;
   color: var(--color-text-inverse);
-  margin-bottom: 4px;
   letter-spacing: -0.5px;
+  line-height: 1.2;
 }
 
-/* Card Glow Accent */
-.cardGlow {
-  position: absolute;
-  top: -100px;
-  right: -100px;
-  width: 250px;
-  height: 250px;
-  background: radial-gradient(circle, rgba(var(--color-primary-contemporary-rgb), 0.12) 0%, transparent 70%);
-  pointer-events: none;
+.albumDesc {
+  font-family: var(--font-primary-contemporary);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.5;
+  max-height: 0;
+  overflow: hidden;
   opacity: 0;
-  transition: opacity var(--motion-smooth) cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 1;
+  transition: max-height var(--motion-smooth) cubic-bezier(0.16, 1, 0.3, 1),
+    opacity var(--motion-smooth) ease;
 }
 
-.albumCard:hover .cardGlow {
+.albumCard:hover .albumDesc {
+  max-height: 80px;
   opacity: 1;
 }
 
@@ -226,7 +228,7 @@
 .albumCard:focus-visible {
   outline: 2px solid var(--color-primary-contemporary);
   outline-offset: 4px;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
 }
 
 /* --- Lightbox Modal Viewport Overlay --- */
@@ -343,6 +345,7 @@
     opacity: 0;
     transform: scale(0.97);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -423,8 +426,7 @@
 /* --- Responsive Breakpoints --- */
 @media (max-width: 1024px) {
   .albumsGrid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    gap: 36px 28px;
   }
 }
 
@@ -435,8 +437,15 @@
   }
 
   .albumCard {
-    padding: 28px 20px;
-    min-height: 260px;
+    min-height: 280px;
+  }
+
+  .cardContent {
+    padding: 24px;
+  }
+
+  .albumTitle {
+    font-size: 20px;
   }
 
   .galleryTitle {

@@ -50,7 +50,7 @@ export default function ProcessSection() {
       aria-label="Our Creative Editing Process"
     >
       <div className="section-container">
-        <div className={styles.processHeader}>
+        <div className={`${styles.processHeader} reveal-fade`}>
           <span className={styles.processTag}>
             WORKFLOW SEQUENCE
           </span>
@@ -60,7 +60,7 @@ export default function ProcessSection() {
           </p>
         </div>
 
-        <div className={styles.processGrid}>
+        <div className={`${styles.processGrid} reveal-fade`}>
           {PROCESS_STEPS.map((step) => {
             const IconComponent = step.icon;
             return (

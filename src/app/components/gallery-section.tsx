@@ -1,9 +1,8 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Images } from "lucide-react";
 import styles from "./gallery-section.module.css";
-import Stack from "@/components/Stack";
 
 interface Album {
   id: string;
@@ -162,7 +161,7 @@ export default function GallerySection() {
       aria-label="Our Photo Galleries"
     >
       <div className="section-container">
-        <div className={styles.galleryHeader}>
+        <div className={`${styles.galleryHeader} reveal-fade`}>
           <span className={styles.galleryTag}>
             PHOTO ALBUMS
           </span>
@@ -172,46 +171,38 @@ export default function GallerySection() {
           </p>
         </div>
 
-        <div className={styles.albumsGrid}>
-          {ALBUMS.map((album, index) => (
-            <div className={styles.cardWrapper} key={album.title}>
-              <article
-                className={styles.albumCard}
-                onClick={() => openLightbox(album)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    openLightbox(album);
-                  }
-                }}
-                aria-label={`Open ${album.title} gallery containing ${album.count} photos`}
-              >
-                <div className={styles.cardBg} aria-hidden="true">
-                  <Stack
-                    randomRotation={true}
-                    sensitivity={180}
-                    autoplay={true}
-                    autoplayDelay={4000 + index * 300} // Stagger autoplay deterministically
-                    sendToBackOnClick={false}
-                    // @ts-expect-error: Stack component is untyped JSX and cards infers as never[]
-                    cards={album.images.map((img, i) => (
-                      <img key={i} src={img} alt={`${album.title} preview`} className="w-full h-full object-cover" />
-                    ))}
-                  />
-                </div>
-                <div className={styles.cardOverlay} style={{ pointerEvents: 'none' }} aria-hidden="true" />
-  
-                <div className={styles.cardContent}>
-                  <div className={styles.cardBody}>
-                    <h3 className={styles.albumTitle}>{album.title}</h3>
-                  </div>
-                </div>
-  
-                <div className={styles.cardGlow} />
-              </article>
-            </div>
+        <div className={`${styles.albumsGrid} reveal-fade`}>
+          {ALBUMS.map((album) => (
+            <article
+              key={album.id}
+              className={styles.albumCard}
+              onClick={() => openLightbox(album)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  openLightbox(album);
+                }
+              }}
+              aria-label={`Open ${album.title} gallery containing ${album.count} photos`}
+            >
+              <div
+                className={styles.cardImage}
+                style={{ backgroundImage: `url(${album.cover})` }}
+                aria-hidden="true"
+              />
+              <div className={styles.cardOverlay} aria-hidden="true" />
+
+              <div className={styles.cardContent}>
+                <span className={styles.photoCount}>
+                  <Images size={14} />
+                  {album.count} Photos
+                </span>
+                <h3 className={styles.albumTitle}>{album.title}</h3>
+                <p className={styles.albumDesc}>{album.desc}</p>
+              </div>
+            </article>
           ))}
         </div>
       </div>
@@ -277,9 +268,8 @@ export default function GallerySection() {
                       thumbnailRefs.current[idx] = el;
                     }}
                     onClick={() => setActiveImageIndex(idx)}
-                    className={`${styles.thumbnailBtn} ${
-                      activeImageIndex === idx ? styles.activeThumbnail : ""
-                    }`}
+                    className={`${styles.thumbnailBtn} ${activeImageIndex === idx ? styles.activeThumbnail : ""
+                      }`}
                     role="option"
                     aria-selected={activeImageIndex === idx}
                     aria-label={`View photo ${idx + 1} of ${activeAlbum.images.length}`}

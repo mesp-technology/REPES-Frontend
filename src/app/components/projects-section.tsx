@@ -13,7 +13,7 @@ const PROJECTS = [
     Icon: ImageIcon,
     title: "Luxury Hillside Villa",
     desc: "High-end exposure blending, foliage enhancement, and wire removal for a multi-million dollar listing.",
-    tat: "12h Delivery",
+    price: "$1.50",
     tag: "HDR Blending",
     image: "/photo-editing-service-section-banner.jpg",
   },
@@ -23,7 +23,7 @@ const PROJECTS = [
     Icon: Sofa,
     title: "Modern Scandinavian Condo",
     desc: "Staged a vacant metropolitan penthouse with photorealistic contemporary furniture and lighting modeling.",
-    tat: "18h Delivery",
+    price: "$15.00",
     tag: "Virtual Staging",
     image: "/virtual-service-section-banner.jpg",
   },
@@ -33,7 +33,7 @@ const PROJECTS = [
     Icon: Video,
     title: "Sunset Estate Video Tour",
     desc: "Cinematic walkthrough featuring advanced stabilization, customized brand graphics, and warm color grading.",
-    tat: "24h Delivery",
+    price: "$45.00",
     tag: "4K Video Tour",
     image: "/hero-video-production.png",
   },
@@ -43,7 +43,7 @@ const PROJECTS = [
     Icon: PencilRuler,
     title: "Commercial Office Blueprint",
     desc: "Turned laser scanner files into a crisp, high-accuracy 3D visual plan and detailed architectural models.",
-    tat: "12h Delivery",
+    price: "$12.00",
     tag: "3D Floor Plan",
     image: "/hero-3d-rendering.png",
   },
@@ -53,7 +53,7 @@ const PROJECTS = [
     Icon: ImageIcon,
     title: "Penthouse Dusk Conversion",
     desc: "Virtual twilight skies, warm interior light glow addition, and window exposure pull for optimal dynamic range.",
-    tat: "12h Delivery",
+    price: "$2.50",
     tag: "Day-To-Dusk",
     image: "/hero-2d-editing.png",
   },
@@ -63,7 +63,7 @@ const PROJECTS = [
     Icon: Sofa,
     title: "Industrial Loft Living Room",
     desc: "Converted an empty concrete warehouse interior into a warm, high-end loft spaces with wood and leather staging.",
-    tat: "18h Delivery",
+    price: "$18.00",
     tag: "Industrial Style",
     image: "/virtual-service-section-banner.jpg",
   },
@@ -89,13 +89,13 @@ export default function ProjectsSection() {
       aria-label="Our Projects Portfolio"
     >
       <div className="section-container">
-        <div className={styles.projectsHeader}>
+        <div className={`${styles.projectsHeader} reveal-fade`}>
           <span className={styles.projectsTag}>
             RECENT WORK
           </span>
           <h2 className={styles.projectsTitle}>Our Editing Showcases</h2>
           <p className={styles.projectsSubtitle}>
-            Explore actual examples of our high-quality photo enhancements, 
+            Explore actual examples of our high-quality photo enhancements,
             cinematic video renders, floor plans, and virtual staging.
           </p>
         </div>
@@ -119,14 +119,14 @@ export default function ProjectsSection() {
           })}
         </div>
 
-        <div 
-          className={styles.projectsGrid} 
+        <div
+          className={`${styles.projectsGrid} reveal-fade`}
           id="portfolio-grid"
           role="tabpanel"
           aria-labelledby={`tab-${activeCategory.toLowerCase().replace(/\s+/g, "-")}`}
         >
           {visibleProjects.map((project) => (
-            <article key={project.title} className={styles.projectCard}>
+            <article key={project.title} className={project.category === activeCategory || activeCategory === "All" ? styles.projectCard : styles.projectCard}>
               <div
                 className={styles.cardBg}
                 style={{ backgroundImage: `url(${project.image})` }}
@@ -154,7 +154,7 @@ export default function ProjectsSection() {
                 </div>
 
                 <div className={styles.cardFooter}>
-                  <span className={styles.tatLabel}>{project.tat}</span>
+                  <span className={styles.priceLabel}>{project.price}</span>
                   <a
                     href="#contact"
                     className={styles.projectLink}

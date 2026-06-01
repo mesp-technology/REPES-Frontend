@@ -51,9 +51,9 @@ export default function BlogSection() {
       aria-label="Explore Our Blog"
     >
       <div className={styles.blogGlow} aria-hidden="true" />
-      
+
       <div className="section-container">
-        <div className={styles.blogHeader}>
+        <div className={`${styles.blogHeader} reveal-fade`}>
           <span className={styles.blogTag}>
             OUR NEWS
           </span>
@@ -63,7 +63,7 @@ export default function BlogSection() {
           </p>
         </div>
 
-        <div className={styles.blogGrid}>
+        <div className={`${styles.blogGrid} reveal-fade`}>
           {BLOG_POSTS.map((post) => (
             <article
               key={post.id}

@@ -51,8 +51,8 @@ export default function StatsSection() {
       aria-label="Why Choose Us Section"
     >
       <div className="section-container">
-        <div className={styles.whyHeader}>
-          <span className={styles.whyTag}>
+        <div className={`${styles.whyHeader} reveal-fade`}>
+          <span className={`section-tag-global ${styles.whyTag}`}>
             BEST SERVICES
           </span>
           <h2 className={styles.whyTitle}>WHY CHOOSE US</h2>
@@ -62,7 +62,7 @@ export default function StatsSection() {
           </p>
         </div>
 
-        <div className={styles.whyGrid}>
+        <div className={`${styles.whyGrid} reveal-fade`}>
           {CHOOSE_ITEMS.map((item) => (
             <article key={item.title} className={styles.whyCard}>
               <div className={styles.iconContainer}>

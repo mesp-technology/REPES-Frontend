@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const NAV_LINKS = [
   { label: "Services", href: "#services" },
-  { label: "About", href: "#features" },
+  { label: "About", href: "#about" },
   { label: "Testimonials", href: "#testimonials" },
   { label: "Contact", href: "#cta" },
 ];
@@ -48,15 +48,15 @@ export default function Header() {
       role="banner"
     >
       <div className={styles.headerInner}>
-        <a href="#" className={styles.logo} aria-label="Repes Home">
+        <Link href="/" className={styles.logo} aria-label="Repes Home">
           <img src="/repes-logo.svg" alt="Repes logo" className={styles.logoImage} />
-        </a>
+        </Link>
 
         <nav className={styles.nav} aria-label="Main navigation">
           {NAV_LINKS.map((link) => (
-            <a key={link.href} href={link.href} className={styles.navLink}>
+            <Link key={link.href} href={link.href} className={styles.navLink}>
               {link.label}
-            </a>
+            </Link>
           ))}
           <Link href="/login" className={styles.ctaButton}>
             Get Started
@@ -82,22 +82,22 @@ export default function Header() {
         aria-label="Mobile navigation"
       >
         {NAV_LINKS.map((link) => (
-          <a
+          <Link
             key={link.href}
             href={link.href}
             className={styles.navLink}
             onClick={() => setMobileOpen(false)}
           >
             {link.label}
-          </a>
+          </Link>
         ))}
-        <a
+        <Link
           href="/login"
           className={styles.ctaButton}
           onClick={() => setMobileOpen(false)}
         >
           Get Started
-        </a>
+        </Link>
       </nav>
     </header>
   );

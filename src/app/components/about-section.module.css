@@ -1,0 +1,148 @@
+.about {
+  background-color: var(--color-surface-alt);
+  position: relative;
+  overflow: hidden;
+}
+
+.aboutHeader {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto var(--space-5);
+  position: relative;
+  z-index: 2;
+}
+
+.aboutTag {
+  animation: typingAbout 8s infinite;
+}
+
+@keyframes typingAbout {
+  0% {
+    width: 0;
+    animation-timing-function: steps(15, end);
+  }
+
+  15% {
+    width: 18ch;
+  }
+
+  95% {
+    width: 18ch;
+  }
+
+  100% {
+    width: 0;
+  }
+}
+
+.aboutTitle {
+  font-family: var(--font-display-contemporary);
+  font-size: clamp(38px, 5.5vw, 52px);
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+  letter-spacing: -1px;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.aboutSubtitle {
+  font-family: var(--font-primary-contemporary);
+  font-size: var(--font-size-xl);
+  color: var(--color-text-muted);
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Metrics Grid */
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--space-5);
+
+}
+
+@media (min-width: 576px) {
+  .metricsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .metricsGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.metricCard {
+  background-color: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--motion-smooth) cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--shadow-card);
+}
+
+.metricCard:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: rgba(253, 224, 58, 0.4);
+}
+
+.metricHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-3);
+}
+
+.metricValue {
+  font-family: var(--font-display-contemporary);
+  font-size: 42px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: 1;
+}
+
+.metricIcon {
+  color: var(--color-text-tertiary-dark);
+  transition: transform var(--motion-smooth) ease;
+}
+
+.metricCard:hover .metricIcon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.metricLabel {
+  font-family: var(--font-primary-contemporary);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.metricDesc {
+  font-family: var(--font-primary-contemporary);
+  font-size: 14px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+.cardGlow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle 100px at var(--x, 0) var(--y, 0), rgba(253, 224, 58, 0.06), transparent 80%);
+  opacity: 0;
+  transition: opacity var(--motion-smooth) ease;
+  pointer-events: none;
+}
+
+.metricCard:hover .cardGlow {
+  opacity: 1;
+}

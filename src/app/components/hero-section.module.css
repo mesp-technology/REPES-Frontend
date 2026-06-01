@@ -84,9 +84,11 @@
   text-transform: uppercase;
   letter-spacing: 1.5px;
   width: fit-content;
-  perspective: 400px; /* Enable structural 3D flip projections */
+  perspective: 400px;
+  /* Enable structural 3D flip projections */
   overflow: hidden;
-  height: 24px; /* Secure height alignment for vertical slot roll */
+  height: 24px;
+  /* Secure height alignment for vertical slot roll */
 }
 
 .heroTagText {
@@ -100,6 +102,7 @@
     opacity: 0;
     transform: translateY(20px) rotateX(-90deg);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0) rotateX(0deg);
@@ -340,19 +343,21 @@
 
 /* --- Core Slide Frame (Stacked Glass Panel) --- */
 .carouselSlide {
-  position: absolute; /* Stack elements absolutely by default */
+  position: absolute;
+  /* Stack elements absolutely by default */
   inset: 0;
   width: 100%;
   aspect-ratio: 4 / 3;
   border-radius: var(--radius-md);
   border: 1px solid rgba(255, 255, 255, 0.2);
   overflow: hidden;
-  display: none; /* Hidden unless active or exiting */
+  display: none;
+  /* Hidden unless active or exiting */
   align-items: center;
   justify-content: center;
-  box-shadow: 0 15px 45px rgba(11, 12, 38, 0.15), 
-              0 5px 15px rgba(0, 0, 0, 0.1),
-              inset 0 0 15px rgba(255, 255, 255, 0.05);
+  box-shadow: 0 15px 45px rgba(11, 12, 38, 0.15),
+    0 5px 15px rgba(0, 0, 0, 0.1),
+    inset 0 0 15px rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   background: rgba(255, 255, 255, 0.02);
@@ -361,18 +366,21 @@
 
 .slideActive {
   display: flex;
-  position: relative; /* Restores layout height for the wrapper container */
+  position: relative;
+  /* Restores layout height for the wrapper container */
   z-index: 5;
   animation: cardZoomEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .slideExited {
   display: flex;
-  position: absolute; /* Overlays absolutely on top of stack for transition */
+  position: absolute;
+  /* Overlays absolutely on top of stack for transition */
   inset: 0;
   z-index: 4;
   animation: cardDropExit 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
-  pointer-events: none; /* Disable mouse events on exiting card */
+  pointer-events: none;
+  /* Disable mouse events on exiting card */
 }
 
 @keyframes cardZoomEnter {
@@ -380,6 +388,7 @@
     opacity: 0;
     transform: scale(0.92) translateY(-20px) rotateX(10deg);
   }
+
   100% {
     opacity: 1;
     transform: scale(1) translateY(0) rotateX(0deg);
@@ -391,9 +400,11 @@
     opacity: 1;
     transform: translateY(0) scale(1) rotate(0deg);
   }
+
   100% {
     opacity: 0;
-    transform: translateY(140px) scale(0.9) rotate(-6deg); /* Drops down, shrinks, and slants physically! */
+    transform: translateY(140px) scale(0.9) rotate(-6deg);
+    /* Drops down, shrinks, and slants physically! */
   }
 }
 
@@ -413,12 +424,10 @@
 .slideOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(11, 12, 38, 0.75) 0%,
-    rgba(11, 12, 38, 0.2) 60%,
-    transparent 100%
-  );
+  background: linear-gradient(to top,
+      rgba(11, 12, 38, 0.75) 0%,
+      rgba(11, 12, 38, 0.2) 60%,
+      transparent 100%);
   z-index: 1;
 }
 
@@ -462,20 +471,23 @@
 .navBtn {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%) translateZ(25px); /* Project button in 3D */
+  transform: translateY(-50%) translateZ(25px);
+  /* Project button in 3D */
   width: 40px;
   height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%; /* Perfect circular shape */
+  border-radius: 50%;
+  /* Perfect circular shape */
   background: rgba(11, 12, 38, 0.45);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: rgba(255, 255, 255, 0.85);
   cursor: pointer;
-  opacity: 0; /* Smooth fade-in on hover */
+  opacity: 0;
+  /* Smooth fade-in on hover */
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 10;
 }
@@ -496,7 +508,8 @@
   background: var(--color-text-tertiary);
   border-color: var(--color-text-tertiary);
   color: var(--color-text-primary);
-  transform: translateY(-50%) translateZ(35px) scale(1.08); /* Extrude closer on hover */
+  transform: translateY(-50%) translateZ(35px) scale(1.08);
+  /* Extrude closer on hover */
 }
 
 .navBtn:focus-visible {
@@ -517,7 +530,8 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: var(--radius-2xl); /* Pill shape */
+  border-radius: var(--radius-2xl);
+  /* Pill shape */
   padding: 6px 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
   z-index: 10;
@@ -669,6 +683,7 @@
     opacity: 0;
     transform: translateY(100%);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -686,6 +701,7 @@
   0% {
     transform: translate3d(0, 0, 0);
   }
+
   100% {
     transform: translate3d(-50%, 0, 0);
   }

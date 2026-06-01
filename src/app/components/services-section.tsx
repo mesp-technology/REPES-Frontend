@@ -58,8 +58,8 @@ export default function ServicesSection() {
       aria-label="Services Section"
     >
       <div className="section-container">
-        <div className={styles.servicesHeader}>
-          <span className={styles.sectionTag}>
+        <div className={`${styles.servicesHeader} reveal-fade`}>
+          <span className={`section-tag-global ${styles.sectionTag}`}>
             OUR SERVICES
           </span>
           <h2 className={styles.sectionTitle}>
@@ -71,7 +71,7 @@ export default function ServicesSection() {
           </p>
         </div>
 
-        <div className={styles.servicesGrid}>
+        <div className={`${styles.servicesGrid} reveal-fade`}>
           {SERVICES.map((service) => {
             const isLarge = service.size === "large";
 

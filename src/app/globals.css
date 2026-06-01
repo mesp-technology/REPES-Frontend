@@ -177,3 +177,47 @@ img {
   white-space: nowrap;
   border: 0;
 }
+
+/* --- Global Primary Typing Tag --- */
+.section-tag-global {
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid var(--color-secondary-contemporary);
+  width: 0;
+  padding: 0;
+  box-sizing: content-box;
+  padding-right: 6px; /* space between text and blinking cursor */
+  font-family: var(--font-mono-contemporary);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-secondary-contemporary);
+  margin-bottom: var(--space-5);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-bottom: none;
+  border-radius: 0;
+  animation: blink 0.75s step-end infinite;
+}
+
+@keyframes blink {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--color-secondary-contemporary); }
+}
+
+/* --- Global Scroll Reveal Classes --- */
+.reveal-fade {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity var(--motion-slow) cubic-bezier(0.16, 1, 0.3, 1),
+              transform var(--motion-slow) cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-fade.reveal-active {
+  opacity: 1;
+  transform: translateY(0);
+}

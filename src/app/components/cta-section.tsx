@@ -13,7 +13,7 @@ export default function CtaSection() {
       <div className={styles.ctaInner}>
         <div className={styles.ctaGlow} aria-hidden="true" />
 
-        <div className={styles.ctaContent}>
+        <div className={`${styles.ctaContent} reveal-fade`}>
           <span className={styles.ctaTag}>
             LET&apos;S START WITH US
           </span>
